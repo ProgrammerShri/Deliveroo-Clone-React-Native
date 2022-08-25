@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TextInput } from "react-native";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -15,8 +15,9 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <View style={tw`flex-row py-3 items-center mx-4`}>
+    <SafeAreaView style={tw`bg-white pt-5`}>
+      {/* Header */}
+      <View style={tw`flex-row pb-3 items-center mx-4`}>
         <Image
           source={{
             uri: "https://links.papareact.com/wru",
@@ -24,7 +25,7 @@ const HomeScreen = () => {
           style={tw`h-12 w-12 bg-gray-300 rounded-full`}
         />
 
-        <View style={tw`px-2`}>
+        <View style={tw`flex-1 px-2`}>
           <Text style={tw`font-bold text-gray-400 text-xs`}>Deliver Now!</Text>
           <Text style={tw`font-bold text-black text-xl`}>
             Current Location
@@ -32,6 +33,19 @@ const HomeScreen = () => {
           </Text>
         </View>
         <Icon type="ant" name="user" size={35} color="#00CCBB" />
+      </View>
+
+      {/* Search  */}
+      <View style={tw`flex flex-row  items-center pb-2 mx-4 `}>
+        <View style={tw`flex-row flex-1 bg-gray-200 p-3 items-center mx-2`}>
+          <Icon type="feather" name="search" size={20} color="gray" />
+          <TextInput
+            placeholder="Resturant and cusines"
+            keyboardType="default"
+            style={tw`flex-1 px-2`}
+          />
+        </View>
+        <Icon type="entypo" name="sound-mix" size={25} color="#00CCBB" />
       </View>
     </SafeAreaView>
   );
