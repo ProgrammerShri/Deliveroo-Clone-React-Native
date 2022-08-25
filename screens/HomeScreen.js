@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import { View, Text, Image, TextInput, ScrollView } from "react-native";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,14 +6,37 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/Icon";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
+import sanityClient from "../sanity";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [featuredCategory, setFeaturedCategory] = useState([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
+  }, []);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+        *[_type == "featured"]{
+          ...,
+          resturants[]=>{
+            ...,
+            dishes[]=>
+            type->{
+              name
+            }
+          }  
+        }
+      `
+      )
+      .then((data) => {
+        setFeaturedCategory(data);
+      });
   }, []);
 
   return (
@@ -61,29 +84,17 @@ const HomeScreen = () => {
         <Categories />
 
         {/* Featured Row  */}
-        <FeaturedRow
-          id="123"
-          title="Featured"
-          imgUrl="https://links.papareact.com/wru"
-          description="Paid placement for our patners"
-          featuredCategory="featured"
-        />
 
-        <FeaturedRow
-          id="456"
-          title="Tasty Discount"
-          imgUrl="https://links.papareact.com/wru"
-          description="Paid placement for our patners"
-          featuredCategory="featured"
-        />
-
-        <FeaturedRow
-          id="789"
-          title="Offer Near You"
-          imgUrl="https://links.papareact.com/wru"
-          description="Paid placement for our patners"
-          featuredCategory="featured"
-        />
+        {featuredCategory?.map((category) => (
+          <FeaturedRow
+            key={category._id}
+            id={category._id}
+            title={category.name}
+            imgUrl={category.imgUrl}
+            description={category.short_description}
+            featuredCategory={category.resturants}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
