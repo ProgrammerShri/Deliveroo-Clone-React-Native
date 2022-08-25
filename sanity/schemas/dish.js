@@ -2,7 +2,7 @@ export default {
   name: "dish",
   title: "Dish",
   type: "document",
-  field: [
+  fields: [
     {
       name: "name",
       type: "string",
