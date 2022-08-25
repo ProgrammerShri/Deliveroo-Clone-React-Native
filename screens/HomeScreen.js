@@ -3,7 +3,7 @@ import { View, Text, Image } from "react-native";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/Entypo";
+import Icon from "../components/Icon";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -26,9 +26,12 @@ const HomeScreen = () => {
 
         <View style={tw`px-2`}>
           <Text style={tw`font-bold text-gray-400 text-xs`}>Deliver Now!</Text>
-          <Text style={tw`font-bold text-black text-xl`}>Current Location</Text>
+          <Text style={tw`font-bold text-black text-xl`}>
+            Current Location
+            <Icon type="entypo" name="chevron-down" size={20} color="#00CCBB" />
+          </Text>
         </View>
-        <Icon name="chevron-down" size={20} color="#00FFBB" />
+        <Icon type="ant" name="user" size={35} color="#00CCBB" />
       </View>
     </SafeAreaView>
   );
