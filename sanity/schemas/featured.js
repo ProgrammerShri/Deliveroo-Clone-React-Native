@@ -1,25 +1,25 @@
 export default {
   name: "featured",
-  title: "Featured Menu Category",
+  title: "Featured Menu categories",
   type: "document",
   fields: [
     {
       name: "name",
       type: "string",
-      title: "Featured Category Name",
+      title: "Featured Category name",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "short_description",
       type: "string",
-      title: "Short Description",
+      title: "Short description",
       validation: (Rule) => Rule.max(200),
     },
     {
-      name: "resturants",
+      name: "restaurants",
       type: "array",
-      title: "Resturants",
-      of: [{ type: "reference", to: [{ type: "resturant" }] }],
+      title: "Restaurants",
+      of: [{ type: "reference", to: [{ type: "restaurant" }] }],
     },
   ],
 };

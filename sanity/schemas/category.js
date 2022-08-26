@@ -6,13 +6,13 @@ export default {
     {
       name: "name",
       type: "string",
-      title: "Category Name",
+      title: "Category name",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "image",
-      title: "Image of Category ",
       type: "image",
+      title: "Image of Category",
     },
   ],
 };

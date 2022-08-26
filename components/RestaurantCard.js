@@ -2,13 +2,14 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "twrnc";
 import Icon from "./Icon";
+import { urlFor } from "../sanity";
 
-const ResturantCard = ({
+const RestaurantCard = ({
   id,
   imgUrl,
   title,
   rating,
-  genre,
+  genre = "Offer",
   address,
   short_description,
   dishes,
@@ -17,7 +18,10 @@ const ResturantCard = ({
 }) => {
   return (
     <TouchableOpacity style={tw`bg-white mr-3 shadow`}>
-      <Image source={{ uri: imgUrl }} style={tw`h-36 w-64 rounded-sm`} />
+      <Image
+        source={{ uri: urlFor(imgUrl).url() }}
+        style={[tw`h-36 w-64 rounded-sm `, { objectfit: "contain" }]}
+      />
       <View style={tw`px-3 pb-4`}>
         <Text style={tw`font-bold text-lg pt-2 `}>{title}</Text>
         <View style={tw`flex-row items-center `}>
@@ -29,7 +33,7 @@ const ResturantCard = ({
             style={tw`opacity-50`}
           />
           <Text style={tw`text-gray-500 text-xs pl-1`}>
-            <Text style={tw`text-green-500`}>{rating}</Text> ·{genre}
+            <Text style={tw`text-green-500`}>{rating}</Text> · {genre}
           </Text>
         </View>
         <View style={tw`flex-row items-center pt-1 -ml-0.5`}>
@@ -47,4 +51,4 @@ const ResturantCard = ({
   );
 };
 
-export default ResturantCard;
+export default RestaurantCard;

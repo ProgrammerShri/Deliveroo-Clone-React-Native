@@ -5,25 +5,25 @@ export default {
   fields: [
     {
       name: "name",
-      type: "string",
       title: "Name of dish",
+      type: "string",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "short_description",
+      title: "Short description",
       type: "string",
-      title: "Short Description",
       validation: (Rule) => Rule.max(200),
     },
     {
       name: "price",
+      title: "Price of the dish in USD",
       type: "number",
-      title: "Price of dish in GBP",
     },
     {
       name: "image",
-      type: "image",
       title: "Image of the dish",
+      type: "image",
     },
   ],
 };

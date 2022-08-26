@@ -22,15 +22,12 @@ const HomeScreen = () => {
     sanityClient
       .fetch(
         `
-        *[_type == "featured"]{
+        *[_type == 'featured']{
           ...,
-          resturants[]=>{
+          restaurants[]->{
             ...,
-            dishes[]=>
-            type->{
-              name
-            }
-          }  
+            dishes[]->
+          }
         }
       `
       )

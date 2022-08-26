@@ -2,7 +2,8 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "twrnc";
 
-const CategoryCard = ({ imgUrl, title }) => {
+const CategoryCard = ({ imgUrl = "https://papareact.com/wru", title }) => {
+  console.log(title);
   return (
     <TouchableOpacity style={tw`mr-2`}>
       <Image

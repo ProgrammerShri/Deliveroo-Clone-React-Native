@@ -2,30 +2,27 @@ import { View, Text, Image, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import tw from "twrnc";
 import Icon from "./Icon";
-import ResturantCard from "./ResturantCard";
+import RestaurantCard from "./RestaurantCard";
 import sanityClient from "../sanity";
 
 const FeaturedRow = ({ id, title, description }) => {
-  const [resturants, setResturants] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
     sanityClient
       .fetch(
         `*[_type == "featured" && _id == "${id}"]{
-        ...,
-        resturants[]=>{
           ...,
-          dishes[]=>
-          type->{
-            name
-          }
+        restaurants[]->{
+          ...,
+          dishes[]->
         }
+      
       }[0]`,
         { id }
       )
       .then((data) => {
-        console.log(data);
-        setResturants(data);
+        setRestaurants(data.restaurants);
       });
   }, []);
 
@@ -45,19 +42,23 @@ const FeaturedRow = ({ id, title, description }) => {
         }}
         style={tw`pt-4`}
       >
-        {/* Resturant Card  */}
-        <ResturantCard
-          id="123"
-          imgUrl="https://links.papareact.com/gn7"
-          title="Yo Sushi!"
-          rating={4.5}
-          genre="Pizza"
-          address="123 Main St"
-          short_description="Pizza is a savory dish of Italian origin, consisting of a usually round, flattened base of leavened wheat-based dough topped with a sauce made fromtomato, onion, and various other ingredients."
-          dishes={["Pizza", "Pasta", "Burger"]}
-          long={-73.988}
-          lat={40.7128}
-        />
+        {restaurants?.map((restaurant) => {
+          return (
+            <RestaurantCard
+              key={restaurant._id}
+              id={restaurant._id}
+              imgUrl={restaurant.image}
+              title={restaurant.title}
+              rating={restaurant.rating}
+              genre={restaurant.type?.name}
+              address={restaurant.address}
+              short_description={restaurant.short_description}
+              dishes={restaurant.dishes}
+              long={restaurant.long}
+              lat={restaurant.lat}
+            />
+          );
+        })}
       </ScrollView>
     </View>
   );
