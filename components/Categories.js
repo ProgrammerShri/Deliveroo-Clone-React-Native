@@ -27,13 +27,14 @@ const Categories = () => {
       showsHorizontalScrollIndicator={false}
     >
       {categories?.map((category) => {
-        console.log(category);
         return (
-          <CategoryCard
-            key={category._id}
-            title={category.name}
-            // imgUrl={urlFor(category.image).width(200).url()}
-          />
+          category.image && (
+            <CategoryCard
+              key={category._id}
+              title={category.name}
+              imageUrl={urlFor(category.image).width(200).url()}
+            />
+          )
         );
       })}
     </ScrollView>

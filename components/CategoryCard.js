@@ -1,14 +1,14 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "twrnc";
+import { urlFor } from "../sanity";
 
-const CategoryCard = ({ imgUrl = "https://papareact.com/wru", title }) => {
-  console.log(title);
+const CategoryCard = ({ imageUrl, title }) => {
   return (
     <TouchableOpacity style={tw`mr-2`}>
       <Image
         source={{
-          uri: imgUrl,
+          uri: imageUrl,
         }}
         style={tw`h-20 w-20 bg-gray-300 rounded`}
       />
