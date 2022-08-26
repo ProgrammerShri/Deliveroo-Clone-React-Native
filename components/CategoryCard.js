@@ -1,7 +1,6 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "twrnc";
-import { urlFor } from "../sanity";
 
 const CategoryCard = ({ imageUrl, title }) => {
   return (
