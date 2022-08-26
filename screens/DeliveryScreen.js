@@ -50,12 +50,15 @@ const DeliveryScreen = () => {
 
       <MapView
         initialRegion={{
-          latitude: restaurant?.lat || 37.78825,
-          longitude: restaurant?.long || -122.4324,
+          latitude: 21.2514,
+          longitude: 81.6296,
+          //   latitude: restaurant?.lat,
+          //   longitude: restaurant?.long,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
         style={[tw`flex-1 -mt-10`, { zIndex: -1 }]}
+        mapType="mutedStandard"
       ></MapView>
       <SafeAreaView style={tw`bg-white flex-row items-center h-28`}>
         <Image
