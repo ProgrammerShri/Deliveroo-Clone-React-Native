@@ -35,7 +35,7 @@ const BasketScreen = () => {
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
       <View style={tw`flex-1 bg-gray-100`}>
-        <View style={tw`p-5 border-b border-[#00CCBB] bg-white shadow-xs`}>
+        <View style={tw`p-5 border-b border-[#00CCBB] bg-white shadow-md`}>
           <View>
             <Text style={tw`text-lg font-bold text-center`}>Basket</Text>
             <Text style={tw`text-gray-400 text-center`}>
@@ -125,9 +125,11 @@ const BasketScreen = () => {
           </View>
         </View>
 
-        <TouchableOpacity style={tw`rounded-lg bg-[#00CCBB] p-4 `}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PreparingOrderScreen")}
+          style={tw`rounded-lg bg-[#00CCBB] mb-4 mx-4 p-4 `}
+        >
           <Text style={tw`text-center text-white text-lg font-bold`}>
-            {" "}
             Place Order
           </Text>
         </TouchableOpacity>
