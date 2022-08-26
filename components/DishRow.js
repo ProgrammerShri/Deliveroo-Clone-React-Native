@@ -4,9 +4,28 @@ import tw from "twrnc";
 import { urlFor } from "../sanity";
 import Currency from "react-currency-formatter";
 import Icon from "./Icon";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToBasket,
+  removeFromBasket,
+  selectBasketItems,
+  selectBasketItemsWithId,
+} from "../features/basketSlice";
 
 const DishRow = ({ id, name, description, price, image }) => {
   const [isPressed, setIsPressed] = useState(false);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => selectBasketItemsWithId(state, id));
+
+  const addItemToBasket = () => {
+    dispatch(addToBasket({ id, name, description, price, image }));
+  };
+
+  const removeItemFromBasket = () => {
+    if (!items.length > 0) return;
+    dispatch(removeFromBasket({ id }));
+  };
+
   return (
     <>
       <TouchableOpacity
@@ -35,11 +54,23 @@ const DishRow = ({ id, name, description, price, image }) => {
       {isPressed && (
         <View style={tw`bg-white px-4`}>
           <View style={tw`flex-row items-center pb-3`}>
-            <TouchableOpacity style={tw`mr-2`}>
-              <Icon type="ant" name="minuscircle" size={40} color="#00CCBB" />
+            <TouchableOpacity
+              onPress={() => removeItemFromBasket()}
+              disabled={!items.length > 0}
+              style={tw`mr-2`}
+            >
+              <Icon
+                type="ant"
+                name="minuscircle"
+                size={40}
+                color={items.length > 0 ? "#00CCBB" : "gray"}
+              />
             </TouchableOpacity>
-            <Text style={tw`mx-2`}>0</Text>
-            <TouchableOpacity style={tw`ml-2`}>
+            <Text style={tw`mx-2`}>{items.length}</Text>
+            <TouchableOpacity
+              onPress={() => addItemToBasket()}
+              style={tw`ml-2`}
+            >
               <Icon type="ant" name="pluscircle" size={40} color="#00CCBB" />
             </TouchableOpacity>
           </View>
