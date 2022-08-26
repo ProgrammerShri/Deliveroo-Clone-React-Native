@@ -30,8 +30,8 @@ const DishRow = ({ id, name, description, price, image }) => {
     <>
       <TouchableOpacity
         onPress={() => setIsPressed(!isPressed)}
-        style={tw` p-4 bg-white border border-gray-200 ${
-          isPressed && "border-b-0"
+        style={tw`p-4 bg-white  border-gray-200 ${
+          isPressed ? "border-b-0" : "border"
         }`}
       >
         <View style={tw`flex-row`}>

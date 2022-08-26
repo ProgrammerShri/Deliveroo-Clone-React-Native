@@ -8,6 +8,7 @@ import RestaurantScreen from "./screens/RestaurantScreen";
 import { StatusBar } from "expo-status-bar";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import BasketScreen from "./screens/BasketScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,15 @@ const App = () => {
         >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Restaurant" component={RestaurantScreen} />
+          <Stack.Screen
+            name="Basket"
+            component={BasketScreen}
+            options={{
+              presentation: "modal",
+              headerShown: false,
+              animation: "slide_from_bottom",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
