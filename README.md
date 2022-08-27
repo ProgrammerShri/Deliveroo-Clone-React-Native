@@ -77,9 +77,8 @@ module.exports = {
 - <a href="https://docs.expo.dev/eas" target="_blank">More Info</a>
 
 #### 🔴 Open the camera app on your device and scan the code below
-<a href="#instagram"><img src="https://drive.google.com/uc?export=download&id=1MYoXnakTDmbp23AwWyChIPmPONP-FpJV" alt="qr" width="200" height="200" /></a>
-<a href="#instagram"><img src="(https://user-images.githubusercontent.com/64357112/187018700-81fd77fc-55f8-4ac1-928c-d7b43c93c32f.png" alt="qr" width="200" height="200" /></a>
-
+![image](https://user-images.githubusercontent.com/64357112/187018774-a17f7c10-f89f-4048-8f03-08a8009d6bb9.png)
+<a href="#instagram"><img src="https://user-images.githubusercontent.com/99184393/182557606-b36f2540-1260-42bf-b547-ed5832e3615e.png" alt="qr" width="280" height="250" /></a>
 <br>
 #### Expo Publish
 publish your project
